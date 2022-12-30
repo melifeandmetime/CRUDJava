@@ -45,40 +45,7 @@ public class MahasiswaFrame extends javax.swing.JFrame {
         this.statusAwal();
         }
         
-        void validasiInput(Mahasiswa o){
-            if(NimTextField.getText().equals("")){
-                NimLabel.setText("Nim Belum diisi");
-                NimLabel.setVisible(true);
-            }else if(!NimTextField.getText().matches("[0-9]*")){
-                NimLabel.setText("Nim Harus Berisi Angka");
-                NimLabel.setVisible(true);
-            }else if(NimTextField.getText().length() < 5){
-                NimLabel.setText("Nim Minimal berisi 5 angka");
-                NimLabel.setVisible(true);
-            }else if(NimTextField.getText().length() > 12){
-                NimLabel.setText("Nim Maksimal berisi 12 angka");
-                NimLabel.setVisible(true);
-            }else{
-               o.setNim(NimTextField.getText());
-                NimLabel.setVisible(false);
-            }
-            
-            if(NamaTextField.getText().equals("")){
-                NamaLabel.setText("Nama Belum diisi");
-                NamaLabel.setVisible(true);
-            }else {
-                o.setNama(NamaTextField.getText());
-                NamaLabel.setVisible(false);
-            }
-            
-            if(AlamatTextField.getText().equals("")){
-                AlamatLabel.setText("Alamat Belum diisi");
-                AlamatLabel.setVisible(true);
-            }else {
-                o.setAlamat(AlamatTextField.getText());
-                AlamatLabel.setVisible(false);
-            }
-        }
+        
         
          void loadData(){
             try{
@@ -254,17 +221,53 @@ public class MahasiswaFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    void validasiInput(Mahasiswa o){
+            if(NimTextField.getText().equals("")){
+                NimLabel.setText("Nim Belum diisi");
+                NimLabel.setVisible(true);
+            }else if(!NimTextField.getText().matches("[0-9]*")){
+                NimLabel.setText("Nim Harus Berisi Angka");
+                NimLabel.setVisible(true);
+            }else if(NimTextField.getText().length() < 5){
+                NimLabel.setText("Nim Minimal berisi 5 angka");
+                NimLabel.setVisible(true);
+            }else if(NimTextField.getText().length() > 12){
+                NimLabel.setText("Nim Maksimal berisi 12 angka");
+                NimLabel.setVisible(true);
+            }else{
+               o.setNim(NimTextField.getText());
+                NimLabel.setVisible(false);
+            }
+            
+            if(NamaTextField.getText().equals("")){
+                NamaLabel.setText("Nama Belum diisi");
+                NamaLabel.setVisible(true);
+            }else {
+                o.setNama(NamaTextField.getText());
+                NamaLabel.setVisible(false);
+            }
+            
+            if(AlamatTextField.getText().equals("")){
+                AlamatLabel.setText("Alamat Belum diisi");
+                AlamatLabel.setVisible(true);
+            }else {
+                o.setAlamat(AlamatTextField.getText());
+                AlamatLabel.setVisible(false);
+            }
+        }
+    
     private void TambahButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TambahButtonActionPerformed
         try{
             Mahasiswa mhs = new Mahasiswa();
-            mhs.setNim(NimTextField.getText());
-            mhs.setNama(NamaTextField.getText());
-            mhs.setAlamat(AlamatTextField.getText());
+//            mhs.setNim(NimTextField.getText());
+//            mhs.setNama(NamaTextField.getText());
+//            mhs.setAlamat(AlamatTextField.getText());
             validasiInput(mhs);
             mhsServis.insert(mhs);
             this.statusAwal();
             JOptionPane.showMessageDialog(this, "data tersimpan");
         }catch(SQLException ex){
+            JOptionPane.showMessageDialog(this, "data tidak berhasil tersimpan");
             Logger.getLogger(MahasiswaFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_TambahButtonActionPerformed
@@ -272,9 +275,9 @@ public class MahasiswaFrame extends javax.swing.JFrame {
     private void UbahButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UbahButtonActionPerformed
         try{
             Mahasiswa mhs = new Mahasiswa();
-            mhs.setNim(NimTextField.getText());
-            mhs.setNama(NamaTextField.getText());
-            mhs.setAlamat(AlamatTextField.getText());
+//            mhs.setNim(NimTextField.getText());
+//            mhs.setNama(NamaTextField.getText());
+//            mhs.setAlamat(AlamatTextField.getText());
             validasiInput(mhs);
             mhsServis.update(mhs);
             this.statusAwal();
@@ -291,6 +294,7 @@ public class MahasiswaFrame extends javax.swing.JFrame {
             this.statusAwal();
             JOptionPane.showMessageDialog(this, "data berhasil dihapus");
         }catch(SQLException ex){
+            JOptionPane.showMessageDialog(this, "data tidak berhasil diubah");
             Logger.getLogger(MahasiswaFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_HapusButtonActionPerformed
