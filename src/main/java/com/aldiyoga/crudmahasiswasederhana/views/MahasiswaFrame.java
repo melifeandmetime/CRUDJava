@@ -27,6 +27,9 @@ public class MahasiswaFrame extends javax.swing.JFrame {
     
     public MahasiswaFrame() {
         initComponents();
+        NimLabel.setVisible(false);
+        NamaLabel.setVisible(false);
+        AlamatLabel.setVisible(false);
         mhsServis = new MahasiswaController();
         
         MahasiswaTabel.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -40,6 +43,41 @@ public class MahasiswaFrame extends javax.swing.JFrame {
             }
         });
         this.statusAwal();
+        }
+        
+        void validasiInput(Mahasiswa o){
+            if(NimTextField.getText().equals("")){
+                NimLabel.setText("Nim Belum diisi");
+                NimLabel.setVisible(true);
+            }else if(!NimTextField.getText().matches("[0-9]*")){
+                NimLabel.setText("Nim Harus Berisi Angka");
+                NimLabel.setVisible(true);
+            }else if(NimTextField.getText().length() < 5){
+                NimLabel.setText("Nim Minimal berisi 5 angka");
+                NimLabel.setVisible(true);
+            }else if(NimTextField.getText().length() > 12){
+                NimLabel.setText("Nim Maksimal berisi 12 angka");
+                NimLabel.setVisible(true);
+            }else{
+               o.setNim(NimTextField.getText());
+                NimLabel.setVisible(false);
+            }
+            
+            if(NamaTextField.getText().equals("")){
+                NamaLabel.setText("Nama Belum diisi");
+                NamaLabel.setVisible(true);
+            }else {
+                o.setNama(NamaTextField.getText());
+                NamaLabel.setVisible(false);
+            }
+            
+            if(AlamatTextField.getText().equals("")){
+                AlamatLabel.setText("Alamat Belum diisi");
+                AlamatLabel.setVisible(true);
+            }else {
+                o.setAlamat(AlamatTextField.getText());
+                AlamatLabel.setVisible(false);
+            }
         }
         
          void loadData(){
@@ -222,6 +260,7 @@ public class MahasiswaFrame extends javax.swing.JFrame {
             mhs.setNim(NimTextField.getText());
             mhs.setNama(NamaTextField.getText());
             mhs.setAlamat(AlamatTextField.getText());
+            validasiInput(mhs);
             mhsServis.insert(mhs);
             this.statusAwal();
             JOptionPane.showMessageDialog(this, "data tersimpan");
@@ -236,6 +275,7 @@ public class MahasiswaFrame extends javax.swing.JFrame {
             mhs.setNim(NimTextField.getText());
             mhs.setNama(NamaTextField.getText());
             mhs.setAlamat(AlamatTextField.getText());
+            validasiInput(mhs);
             mhsServis.update(mhs);
             this.statusAwal();
             JOptionPane.showMessageDialog(this, "data berhasil diubah");
